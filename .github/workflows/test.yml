@@ -19,7 +19,7 @@ jobs:
           go-version-file: go.mod
 
       - name: Test
-        run: go test -v -race -count=1 -coverprofile=coverage.out -covermode=atomic ./...
+        run: go test -v -coverprofile=coverage.out ./...
 
       - name: Upload coverage to Codacy
         uses: codacy/codacy-coverage-reporter-action@v1
@@ -27,3 +27,4 @@ jobs:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
           coverage-reports: coverage.out
           language: Go
+          force-coverage-parser: go
