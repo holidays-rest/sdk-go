@@ -1,6 +1,8 @@
 # holidays.rest Go SDK
 
-Official Go SDK for the [holidays.rest](https://holidays.rest) API.
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/25967cd426ca4af5ac928747dbff939b)](https://app.codacy.com/gh/holidays-rest/sdk-go/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+
+Official Go SDK for the [holidays.rest](https://www.holidays.rest) API.
 
 ## Requirements
 
@@ -41,7 +43,7 @@ func main() {
     }
 
     for _, holiday := range h {
-        fmt.Printf("%s — %s\n", holiday.Date, holiday.Name)
+        fmt.Printf("%s — %s\n", holiday.Date, holiday.Name["en"])
     }
 }
 ```
@@ -80,7 +82,6 @@ Fetch public holidays.
 type HolidaysParams struct {
     Country  string   // required — ISO 3166 alpha-2 (e.g. "US")
     Year     int      // required — e.g. 2024
-
     Month    int      // optional — 1–12
     Day      int      // optional — 1–31
     Type     []string // optional — "religious", "national", "local"
@@ -88,6 +89,27 @@ type HolidaysParams struct {
     Region   []string // optional — subdivision codes from Country()
     Lang     []string // optional — language codes from Languages()
     Response string   // optional — "json" (default) | "xml" | "yaml" | "csv"
+}
+```
+
+Each returned `Holiday` has the following shape:
+
+```go
+type Holiday struct {
+    CountryCode string            // ISO 3166 alpha-2, e.g. "DE"
+    CountryName string            // e.g. "Germany"
+    Date        string            // "YYYY-MM-DD"
+    Name        map[string]string // language code → name, e.g. {"en": "New Year's Day"}
+    IsNational  bool
+    IsReligious bool
+    IsLocal     bool
+    IsEstimate  bool
+    Day         struct {
+        Actual   string // e.g. "Thursday"
+        Observed string // e.g. "Thursday"
+    }
+    Religion string   // e.g. "Christianity", empty string if none
+    Regions  []string // subdivision codes, e.g. ["BW", "BY"]
 }
 ```
 

@@ -8,15 +8,28 @@ import (
 	"strings"
 )
 
+// HolidayName maps language codes to localized holiday names (e.g. {"en": "New Year's Day"}).
+type HolidayName map[string]string
+
+// HolidayDay holds the actual and observed day-of-week for a holiday.
+type HolidayDay struct {
+	Actual   string `json:"actual"`
+	Observed string `json:"observed"`
+}
+
 // Holiday represents a single public holiday returned by the API.
 type Holiday struct {
-	Name      string `json:"name"`
-	Date      string `json:"date"`
-	Type      string `json:"type"`
-	Country   string `json:"country"`
-	Region    string `json:"region,omitempty"`
-	Religion  string `json:"religion,omitempty"`
-	Language  string `json:"language,omitempty"`
+	CountryCode string      `json:"country_code"`
+	CountryName string      `json:"country_name"`
+	Date        string      `json:"date"`
+	Name        HolidayName `json:"name"`
+	IsNational  bool        `json:"isNational"`
+	IsReligious bool        `json:"isReligious"`
+	IsLocal     bool        `json:"isLocal"`
+	IsEstimate  bool        `json:"isEstimate"`
+	Day         HolidayDay  `json:"day"`
+	Religion    string      `json:"religion"`
+	Regions     []string    `json:"regions"`
 }
 
 // HolidaysParams holds the parameters for the Holidays endpoint.
