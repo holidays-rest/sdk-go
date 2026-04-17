@@ -7,7 +7,7 @@ Official Go SDK for the [holidays.rest](https://www.holidays.rest) API.
 
 ## Requirements
 
-- Go 1.21+
+- Go 1.26+
 - No external dependencies — uses only the standard library
 
 ## Installation
