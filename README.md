@@ -1,6 +1,7 @@
 # holidays.rest Go SDK
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/25967cd426ca4af5ac928747dbff939b)](https://app.codacy.com/gh/holidays-rest/sdk-go/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/25967cd426ca4af5ac928747dbff939b)](https://app.codacy.com/gh/holidays-rest/sdk-go/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage)
 
 Official Go SDK for the [holidays.rest](https://www.holidays.rest) API.
 
